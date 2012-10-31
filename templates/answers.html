@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block wurst %}
+    <h1 xmlns="http://www.w3.org/1999/html">Antworten</h1>
+{% endblock %}
+
+{% block kaese %}
+    <div class="well" id="referent_select">
+        <div class="input-prepend input-append">
+            <label for="referent" class="add-on">Referent:</label>
+            <select class="span6" id="referent" name="referent">
+                <option value="-1">---</option>
+                {% for referent in referents %}
+                <option value="{{ referent.id }}">{{ referent.name }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn" type="button">Auswählen</button>
+            <a class="btn" href="{{ url_for("referents") }}">Hinzufügen</a>
+        </div>
+    </div>
+    <div id="answers">
+{% include "answer_list.html" %}
+    </div>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        var answer_url = "{{ url_for("answers") }}";
+        $(function(){
+            $("body").on("click", "#referent_select>div>button", function(event) {
+                event.preventDefault();
+                var selected = $("#referent_select").find("select").val(),
+                        url = (parseInt(selected) < 0 ? answer_url : answer_url + "/" + selected);
+                $.ajax({url: url,
+                           success: function( data ) {
+                               $("#answers").html(data);
+
+                           },
+                           dataType: "html"});
+            })
+        });
+    </script>
+{% endblock %}

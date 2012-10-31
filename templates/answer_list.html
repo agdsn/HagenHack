@@ -1,0 +1,9 @@
+{% for referent in answers %}
+    {% if not loop.first %}<hr>{% endif %}
+    <h2>Referent: {{ referent.name }}</h2>
+    {% for comment in referent.comments %}
+        <span class="pull-right muted">{{ comment.formatted_date() }}</span>
+        <h4>{{ comment.subject }}</h4>
+        <p>{{ comment.body }}</p>
+    {% endfor %}
+{% endfor %}

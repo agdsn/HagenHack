@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block wurst %}
+    <h1 xmlns="http://www.w3.org/1999/html">Vielen Dank</h1>
+    <p class="lead">Ihre Frage wurde erfolgreich aufgenommen.</p>
+{% endblock %}
+
+{% block kaese %}
+    <div class="jumbotron">
+        <a class="btn btn-large btn-success" href="{{ url_for("question") }}">Zurück</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block kaese %}
+    <form class="form-horizontal" xmlns="http://www.w3.org/1999/html" action="{{ url_for("question") }}" method="post">
+        {% for field in form %}
+            {{ macros.simple_field(field) }}
+        {% endfor %}
+        <div class="jumbotron">
+            <input type="submit" class="btn btn-large btn-success" value="Abschicken"/>
+        </div>
+    </form>
+{% endblock %}

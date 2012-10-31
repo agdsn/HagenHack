@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block wurst %}
+    <h1 xmlns="http://www.w3.org/1999/html">Referenten</h1>
+{% endblock %}
+
+{% block kaese %}
+    <ul>
+    {% for referent in referents %}
+        <li>{{ referent }}</li>
+    {% endfor %}
+    </ul>
+    <a class="btn btn-success" href="{{ url_for("referent_add") }}">Neu</a>
+    <a class="btn" href="{{ url_for("answers") }}">Zurück</a>
+{% endblock %}
